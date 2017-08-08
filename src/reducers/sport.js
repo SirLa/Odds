@@ -1,14 +1,21 @@
 let initialState = {
-    sportData: []
+    data: [],
+    index: null
 }
 
 const sports = (state=initialState, action) => {
     switch(action.type) {
 
-        case "GET_SPORTS": {
+        case "GET_DATA": {
             return{
                 ...state,
-                sportData: action.sportData
+                data: action.data
+            }
+        }
+        case "HANDLE_CLICK": {
+            return{
+                ...state,
+                index: action.index
             }
         }
         default: {

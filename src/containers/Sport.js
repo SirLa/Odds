@@ -1,48 +1,56 @@
 import React, {Component} from 'react';
 import {connect } from 'react-redux';
 import axios from 'axios';
-import {getSports} from '../actions';
+import {getData,handleClick} from '../actions';
 import '../css/sport.css'
-
+import Region from './Region'
 class Sport extends Component{
-
     componentDidMount(){
-        this.props.getSports();
+        this.props.getData();
     }
+
 
     render(){
         if(this.props.sports){
-            console.log(this.props.sports)
+            //console.log(this.props.sports)
             this.sportBar = this.props.sports.map((item,index) => {
-                return (
-                    <li key={index} className="sport">{item[1]}</li>
-                )
+                if(item!==null){
+                    return (
+                        <li key={index} className="sport" id={index} onClick={
+                            (event) => {
+                                this.props.handleClick(index)
+                            }
+                        }><div>{item["SportName"]}</div></li>
+
+                    )
+
+                }
+
             });
         }
-
-            return (
-                <div>
-
-                       {this.props.sports? <ul className="sportBar">{this.sportBar}</ul>:null}
-
-
-                </div>
-            )
-        }
+        return (
+            <div className="sport-nav">
+                {this.props.sports? <ul className="sportBar">{this.sportBar}</ul>:null}
+                <Region/>
+            </div>
+        )
+    }
 }
 const mapStateToProps = (state) => {
-    console.log(state.sports.sportData.sports)
+   //console.log(state)
     return {
-        sports: state.sports.sportData.sports,
+        sports: state.sports.data.Sports
     }
 }
 const mapDispatchToProps = (dispatch)  => {
     return {
-        getSports: () => {
-            axios.get("http://www.mocky.io/v2/598846cc2700008d00afee66").then(res => {dispatch(getSports(res.data))})
+        handleClick: (index) => {
+            dispatch(handleClick(index))
+        },
+        getData: () => {
+            axios.get("http://www.mocky.io/v2/598997ae4100009504820f36").then(res => {dispatch(getData(res.data))})
         }
 
     }
-
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Sport);
