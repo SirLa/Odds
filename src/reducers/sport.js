@@ -1,6 +1,7 @@
 let initialState = {
     data: [],
-    index: null
+    index: null,
+    open: false
 }
 
 const sports = (state=initialState, action) => {
@@ -15,7 +16,8 @@ const sports = (state=initialState, action) => {
         case "HANDLE_CLICK": {
             return{
                 ...state,
-                index: action.index
+                index: action.index,
+                open: action.open
             }
         }
         default: {

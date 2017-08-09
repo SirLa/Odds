@@ -5,9 +5,10 @@ export const getData = (data) => {
         data: data
     }
 }
-export const handleClick = (index) => {
+export const handleClick = (index,boolean) => {
     return {
         type: "HANDLE_CLICK",
-        index:index
+        index:index,
+        open: boolean
     }
 }

@@ -16,14 +16,15 @@ class Sport extends Component{
             this.sportBar = this.props.sports.map((item,index) => {
                 if(item!==null){
                     return (
-                        <li key={index} className="sport" id={index} onClick={
-                            (event) => {
-                                this.props.handleClick(index)
-                            }
-                        }><div>{item["SportName"]}</div></li>
-
+                        <div className="sportContainer">
+                            <li key={index} className="sport" id={index} onClick={
+                                (event) => {
+                                    this.props.handleClick(index,!this.props.open)
+                                }
+                            }><div>{item["SportName"]}</div></li>
+                            {index === this.props.clickedSportIndex && this.props.open?<Region/>:null}
+                        </div>
                     )
-
                 }
 
             });
@@ -31,21 +32,23 @@ class Sport extends Component{
         return (
             <div className="sport-nav">
                 {this.props.sports? <ul className="sportBar">{this.sportBar}</ul>:null}
-                <Region/>
             </div>
         )
     }
 }
 const mapStateToProps = (state) => {
-   //console.log(state)
+   console.log(state)
     return {
-        sports: state.sports.data.Sports
+        clickedSportIndex: state.sports.index,
+        sports: state.sports.data.Sports,
+        open: state.sports.open
     }
 }
 const mapDispatchToProps = (dispatch)  => {
     return {
-        handleClick: (index) => {
-            dispatch(handleClick(index))
+        handleClick: (index,boolean) => {
+            dispatch(handleClick(index,boolean));
+
         },
         getData: () => {
             axios.get("http://www.mocky.io/v2/598997ae4100009504820f36").then(res => {dispatch(getData(res.data))})
