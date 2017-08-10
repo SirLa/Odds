@@ -14,15 +14,17 @@
     width: 100%;
 
 }
-.sportBar>div>li>div{
+.sportBar div{
     padding: 1.5%;
-
 }
-.sportBar>div>li{
+.sportBar li{
     background-color: #2E323E;
     margin-top: 1%;
     opacity: 0.7;
 }
-.sportBar>div>li:hover{
+.sportBar li:hover{
     background-color: #363945;
+}
+.region-nav{
+    background-color: #0E151B;
 }

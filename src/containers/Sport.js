@@ -16,15 +16,18 @@ class Sport extends Component{
             this.sportBar = this.props.sports.map((item,index) => {
                 if(item!==null){
                     return (
-                        <div className="sportContainer">
-                            <li key={index} className="sport" id={index} onClick={
-                                (event) => {
-                                    this.props.handleClick(index,!this.props.open)
-                                }
-                            }><div>{item["SportName"]}</div></li>
-                            {index === this.props.clickedSportIndex && this.props.open?<Region/>:null}
-                        </div>
-                    )
+
+                            <li key={index} className="sport" id={index} >
+                                <div onClick={
+                                    (event) => {
+                                        this.props.handleClick(index,!this.props.open)
+                                    }
+                                }>{item["SportName"]}</div>
+                                {index === this.props.clickedSportIndex && this.props.open?<Region/>:null}
+                            </li>
+
+
+                )
                 }
 
             });

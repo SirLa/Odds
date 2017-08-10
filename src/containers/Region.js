@@ -17,8 +17,8 @@ class Region extends Component{
             });
         }
         return (
-            <div>
-                {this.props.regions?<ul className="sportBar">{this.regionBar}</ul>:null}
+            <div className="region-nav">
+                {this.props.regions?<ul className="regionBar">{this.regionBar}</ul>:null}
             </div>
         )
     }
@@ -33,7 +33,6 @@ const mapStateToProps = (state) => {
             regions: state.sports.data.Sports[ind].Regions
         }
     }
-       return{}
 }
 const mapDispatchToProps = (dispatch)  => {
     return {
